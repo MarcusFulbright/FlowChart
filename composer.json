@@ -1,0 +1,22 @@
+{
+    "name": "mbright/tree-example",
+    "description": "Prototype for a decision tree",
+    "type": "library",
+    "require-dev": {
+        "mockery/mockery": "^0.9.5"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Marcus Fulbright",
+            "email": "fulbright.marcus@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Mbright\\TreeExample\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {}
+}
