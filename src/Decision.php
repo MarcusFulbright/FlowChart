@@ -4,38 +4,48 @@ namespace Mbright\TreeExample;
 
 class Decision implements NodeInterface
 {
-    protected $prompt;
+    /** @var String */
+    protected $display_text;
 
-    protected $children = [];
+    /** @var array[NodeInterface] */
+    protected $answers = [];
 
-    public function __construct($prompt, $children = [])
+    /**
+     * @param $display_text
+     * @param array[NodeInterface] $answers
+     */
+    public function __construct($display_text, $answers = [])
     {
-        $this->prompt = $prompt;
-        $this->children = $children;
+        $this->display_text = $display_text;
+        foreach ($answers as $answer) {
+            $this->addAnswer($answer);
+        }
     }
 
-    public function addChild($result, NodeInterface $child)
+    /** @param Answer $answer */
+    public function addAnswer(Answer $answer)
     {
-        $this->children[$result] = $child;
+        $this->answers[$answer->getDisplayText()] = $answer;
     }
 
-    public function removeChild($result)
+    /** @param $answer */
+    public function removeAnswer($answer)
     {
-        unset($this[$result]);
+        unset($this->answers[$answer]);
     }
 
-    public function getChild($result)
+    /** @return String */
+    public function getDisplayText()
     {
-        return $this->children[$result];
+        return $this->display_text;
     }
 
-    public function getPrompt()
+    /**
+     * @param String $input
+     * @return NodeInterface
+     */
+    public function getAnswer($input)
     {
-        return $this->prompt;
-    }
-
-    public function hasChildren()
-    {
-        return count($this->children) > 0;
+        return $this->answers[$input];
     }
 }

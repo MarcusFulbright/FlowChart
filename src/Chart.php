@@ -7,14 +7,19 @@ class Chart
     /** @var NodeInterface */
     public $current;
 
+    /** @var Decision */
     public $root;
 
+    /**
+     * @param Decision $root
+     */
     public function __construct(Decision $root)
     {
         $this->root = $root;
         $this->current = $root;
     }
 
+    /** @param String */
     public function next($input)
     {
         if ($this->atResult()) {
@@ -22,10 +27,11 @@ class Chart
             return false;
         }
 
-        $this->current = $this->current->getChild($input);
+        $this->current = $this->current->getAnswer($input)->getNext();
         return $this->current;
     }
 
+    /** @return bool */
     public function atResult()
     {
         return $this->current instanceof Result;

@@ -4,20 +4,18 @@ namespace Mbright\TreeExample;
 
 class Result implements NodeInterface
 {
-    public $result;
+    /** @var String */
+    protected $display_text;
 
-    public function __construct($result)
+    /** @param String $display_text */
+    public function __construct($display_text)
     {
-        $this->result = $result;
+        $this->display_text = $display_text;
     }
 
-    public function hasChildren()
+    /** @return String */
+    public function getDisplayText()
     {
-        return false;
-    }
-
-    public function isRoot()
-    {
-        return false;
+        return $this->display_text;
     }
 }

@@ -4,5 +4,6 @@ namespace Mbright\TreeExample;
 
 interface NodeInterface
 {
-    public function hasChildren();
+    /** Should return text that is safe to display to the user */
+    public function getDisplayText();
 }
